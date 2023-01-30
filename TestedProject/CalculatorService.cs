@@ -8,7 +8,7 @@ namespace TestedProject
 {
     public class CalculatorService : ICalculatorService
     {
-        public Invoice CreateInvoice(ICollection<InvoiceItem> items, string contractorName)
+        public async Task<Invoice> CreateInvoice(ICollection<InvoiceItem> items, string contractorName)
         {
             Invoice invoice = new Invoice()
             {

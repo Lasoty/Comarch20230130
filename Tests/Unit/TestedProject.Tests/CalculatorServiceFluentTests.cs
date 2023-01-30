@@ -31,7 +31,7 @@ namespace TestedProject.Tests
         }
 
         [Test]
-        public void CreateInvoiceShouldReturnInvoiceWithExactItems()
+        public async Task CreateInvoiceShouldReturnInvoiceWithExactItems()
         {
             ICollection<InvoiceItem> items = new List<InvoiceItem>()
             {
@@ -42,7 +42,7 @@ namespace TestedProject.Tests
 
             string contractorName = "Test contractor";
 
-            Invoice actual = calculatorService.CreateInvoice(items, contractorName);
+            Invoice actual = await calculatorService.CreateInvoice(items, contractorName);
 
             actual.Should().NotBeNull();
             actual.ReceipientName.Should().Be(contractorName);

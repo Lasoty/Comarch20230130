@@ -40,7 +40,7 @@ namespace TestedProject.Tests
         }
 
         [Test]
-        public void CreateInvoiceShouldReturnExactInvoiceItems()
+        public async Task CreateInvoiceShouldReturnExactInvoiceItems()
         {
             //Arrange
             ICalculatorService calculatorService = new CalculatorService();
@@ -56,7 +56,7 @@ namespace TestedProject.Tests
 
 
             //Act 
-            var actual = calculatorService.CreateInvoice(items, contractorName);
+            var actual = await calculatorService.CreateInvoice(items, contractorName);
 
             //Assert
             Assert.AreEqual(totalGrossExpected, actual.TotalGross);

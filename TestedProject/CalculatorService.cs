@@ -1,9 +1,31 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using TestedProject.Model;
 
 namespace TestedProject
 {
     public class CalculatorService : ICalculatorService
     {
+        public Invoice CreateInvoice(ICollection<InvoiceItem> items, string contractorName)
+        {
+            Invoice invoice = new Invoice()
+            {
+                Date = DateTime.Now,
+                Items = items,
+                ReceipientName = contractorName,
+            };
+
+            var totalGross = items.Sum(x => GetGrossFromNet(x.NetValue, x.Tax) * x.Quantity);
+            var totalNet = items.Sum(x => x.NetValue * x.Quantity);
+
+            invoice.TotalGross = totalGross;
+            invoice.TotalNet = totalNet;
+
+            return invoice;
+        }
+
         public decimal GetGrossFromNet(decimal net, decimal tax)
         {
             if (tax < 0)

@@ -1,5 +1,8 @@
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using TestedProject.Model;
 
 namespace TestedProject.Tests
 {
@@ -34,6 +37,32 @@ namespace TestedProject.Tests
 
             // Act & Assert
             Assert.Throws<ArgumentException>(() => calculatorService.GetGrossFromNet(net, tax));
+        }
+
+        [Test]
+        public void CreateInvoiceShouldReturnExactInvoiceItems()
+        {
+            //Arrange
+            ICalculatorService calculatorService = new CalculatorService();
+            ICollection<InvoiceItem> items = new List<InvoiceItem>()
+            {
+                new InvoiceItem { Name = "Item test 1", NetValue = 10, Tax = 0,  Quantity = 1 },
+                new InvoiceItem { Name = "Item test 2", NetValue = 10, Tax = 0.8m,  Quantity = 2 },
+                new InvoiceItem { Name = "Item test 3", NetValue = 10, Tax = 0.23m, Quantity = 3 },
+            };
+            string contractorName = "Test contractor";
+
+            decimal totalGrossExpected = 82.9m;
+
+
+            //Act 
+            var actual = calculatorService.CreateInvoice(items, contractorName);
+
+            //Assert
+            Assert.AreEqual(totalGrossExpected, actual.TotalGross);
+            CollectionAssert.AllItemsAreNotNull(actual.Items);
+            CollectionAssert.AllItemsAreInstancesOfType(actual.Items, typeof(InvoiceItem));
+            CollectionAssert.AreEqual(items, actual.Items);
         }
     }
 }

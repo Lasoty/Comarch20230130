@@ -12,5 +12,10 @@ namespace TestedProject
             }
             return net * (1 + tax);
         }
+
+        public DateTime StartPeriodDate(DateTime dateTime)
+        {
+            return new DateTime(dateTime.Year, dateTime.Month, 1);
+        }
     }
 }

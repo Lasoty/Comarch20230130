@@ -8,6 +8,8 @@ namespace TestedProject
 {
     public class CalculatorService : ICalculatorService
     {
+        public event EventHandler<EventArgs> InvoiceCreated;
+
         public async Task<Invoice> CreateInvoice(ICollection<InvoiceItem> items, string contractorName)
         {
             Invoice invoice = new Invoice()
@@ -22,6 +24,8 @@ namespace TestedProject
 
             invoice.TotalGross = totalGross;
             invoice.TotalNet = totalNet;
+
+            InvoiceCreated?.Invoke(this, EventArgs.Empty);
 
             return invoice;
         }

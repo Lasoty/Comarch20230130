@@ -52,5 +52,19 @@ namespace TestedProject.Tests
             actual.Items.Should().NotBeEmpty().And.HaveCount(3).And.ContainItemsAssignableTo<InvoiceItem>()
                 .And.Equal(items);
         }
+
+        [Test]
+        public void CreateInvoiceShouldRaiseInvoiceCreatedEvent()
+        {
+            ICollection<InvoiceItem> items = new List<InvoiceItem>()
+            {
+                new InvoiceItem { Name = "Item test 1", NetValue = 10, Tax = 0,  Quantity = 1 },
+            };
+
+            using var monitoredCalculatorServie = calculatorService.Monitor();
+
+            var invoice = calculatorService.CreateInvoice(items, "Test contractor");
+            monitoredCalculatorServie.Should().Raise(nameof(CalculatorService.InvoiceCreated));
+        }
     }
 }

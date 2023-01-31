@@ -1,7 +1,9 @@
 ﻿using BMICalculator.Model.DTO;
+using BMICalculator.Model.Repositories;
 using BMICalculator.Services.Enums;
 using BMICalculator.Services.Interfaces;
 using System;
+using System.Threading.Tasks;
 
 namespace BMICalculator.Services
 {
@@ -9,11 +11,17 @@ namespace BMICalculator.Services
     {
         private readonly IBmiDeterminator bmiDeterminator;
         private readonly IBmiCalculatorFactory bmiCalculatorFactory;
+        private readonly IResultRepository resultRepository;
 
-        public BmiCalculatorFacade(IBmiDeterminator bmiDeterminator, IBmiCalculatorFactory bmiCalculatorFactory)
+        public BmiCalculatorFacade(
+            IBmiDeterminator bmiDeterminator, 
+            IBmiCalculatorFactory bmiCalculatorFactory,
+            IResultRepository resultRepository
+            )
         {
             this.bmiDeterminator = bmiDeterminator;
             this.bmiCalculatorFactory = bmiCalculatorFactory;
+            this.resultRepository = resultRepository;
         }
 
         private string GetSummary(BmiClassification classification)
@@ -48,10 +56,19 @@ namespace BMICalculator.Services
             };
 
         }
+
+        public async Task<bool> SaveResult(BmiResult result)
+        {
+            await resultRepository.SaveResultAsync(result);
+
+            return true;
+        }
     }
 
     public interface IBmiCalculatorFacade
     {
         BmiResult GetResult(double weight, double height, UnitSystem unitSystem);
+
+        Task<bool> SaveResult(BmiResult result);
     }
 }

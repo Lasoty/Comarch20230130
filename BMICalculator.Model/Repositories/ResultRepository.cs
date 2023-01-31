@@ -1,4 +1,5 @@
-﻿using BMICalculator.Model.DTO;
+﻿using BMICalculator.Model.Context;
+using BMICalculator.Model.DTO;
 using System.Threading.Tasks;
 
 namespace BMICalculator.Model.Repositories
@@ -10,9 +11,17 @@ namespace BMICalculator.Model.Repositories
 
     public class ResultRepository : IResultRepository
     {
+        private AppDbContext dbContext;
+
+        public ResultRepository(AppDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
         public Task SaveResultAsync(BmiResult result)
         {
-            return Task.CompletedTask;
+            dbContext.Results.Add(result);
+            return dbContext.SaveChangesAsync();
         }
     }
 }

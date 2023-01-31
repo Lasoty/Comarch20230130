@@ -27,6 +27,13 @@ namespace BMICalculator.Services
                 _ => throw new NotImplementedException(),
             };
 
+        /// <summary>
+        /// Jakiś tam komentarz
+        /// </summary>
+        /// <param name="weight"></param>
+        /// <param name="height"></param>
+        /// <param name="unitSystem"></param>
+        /// <returns></returns>
         public BmiResult GetResult(double weight, double height, UnitSystem unitSystem)
         {
             var bmiCalculator = bmiCalculatorFactory.CreateCalculator(unitSystem);

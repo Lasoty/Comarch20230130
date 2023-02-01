@@ -11,6 +11,7 @@ using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
 using NUnit.Framework;
+using System.Diagnostics;
 
 namespace BMICalculator.UI.Tests;
 

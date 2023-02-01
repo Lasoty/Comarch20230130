@@ -29,6 +29,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{2B022751-7438-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMICalculator.UI.Tests", "Tests\UI\BMICalculator.UI.Tests\BMICalculator.UI.Tests.csproj", "{89F4E190-888A-4177-9676-925D810CD5AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsCalculator.UI.Tests", "Tests\UI\WindowsCalculator.UI.Tests\WindowsCalculator.UI.Tests.csproj", "{565E6306-5084-4FE6-B284-2E05E4614D44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{89F4E190-888A-4177-9676-925D810CD5AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89F4E190-888A-4177-9676-925D810CD5AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89F4E190-888A-4177-9676-925D810CD5AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{565E6306-5084-4FE6-B284-2E05E4614D44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{565E6306-5084-4FE6-B284-2E05E4614D44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{565E6306-5084-4FE6-B284-2E05E4614D44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{565E6306-5084-4FE6-B284-2E05E4614D44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,6 +89,7 @@ Global
 		{BF87F020-6C86-42FF-810C-9079147DA657} = {EA29142D-7A41-4507-A0AE-9886B4AE206D}
 		{2B022751-7438-42D2-82D3-7E0F94073056} = {6F35D92A-8550-4F5A-A692-AE2174AC2DA3}
 		{89F4E190-888A-4177-9676-925D810CD5AD} = {2B022751-7438-42D2-82D3-7E0F94073056}
+		{565E6306-5084-4FE6-B284-2E05E4614D44} = {2B022751-7438-42D2-82D3-7E0F94073056}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BB151369-48C7-410E-A642-8A4510F9D576}

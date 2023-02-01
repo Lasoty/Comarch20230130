@@ -1,8 +1,4 @@
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using TestedProject.Model;
+﻿using TestedProject.Model;
 
 namespace TestedProject.Tests
 {

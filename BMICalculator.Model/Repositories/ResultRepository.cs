@@ -1,27 +1,33 @@
-﻿using BMICalculator.Model.Context;
+﻿using BMICalculator.Model.Data;
 using BMICalculator.Model.DTO;
+using BMICalculator.Model.Model;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BMICalculator.Model.Repositories
 {
     public interface IResultRepository
     {
-        Task SaveResultAsync(BmiResult result);
+        IQueryable<BmiMeasurement> GetAll();
+        Task SaveResultAsync(BmiMeasurement result);
     }
 
     public class ResultRepository : IResultRepository
     {
-        private AppDbContext dbContext;
+        private readonly ApplicationDbContext dbContext;
 
-        public ResultRepository(AppDbContext dbContext)
+        public ResultRepository(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
 
-        public Task SaveResultAsync(BmiResult result)
+        public IQueryable<BmiMeasurement> GetAll() 
+            => dbContext.BmiMeasurements;
+
+        public async Task SaveResultAsync(BmiMeasurement result)
         {
-            dbContext.Results.Add(result);
-            return dbContext.SaveChangesAsync();
+            dbContext.BmiMeasurements.Add(result);
+            await dbContext.SaveChangesAsync();
         }
     }
 }

@@ -1,0 +1,110 @@
+<Playlist Version="2.0">
+  <Rule Name="Includes" Match="Any">
+    <Rule Match="All">
+      <Property Name="Solution" />
+      <Rule Match="Any">
+        <Rule Match="All">
+          <Property Name="Project" Value="TestedProject.Tests" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="TestedProject.Tests" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="CalculatorServiceFluentTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestedProject.Tests.CalculatorServiceFluentTests.CreateInvoiceShouldRaiseInvoiceCreatedEvent" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CreateInvoiceShouldRaiseInvoiceCreatedEvent" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestedProject.Tests.CalculatorServiceFluentTests.CreateInvoiceShouldReturnInvoiceWithExactItems" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CreateInvoiceShouldReturnInvoiceWithExactItems" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestedProject.Tests.CalculatorServiceFluentTests.StartPeriodDateShouldReturnValidStartDate" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="StartPeriodDateShouldReturnValidStartDate" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="CalculatorServiceTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestedProject.Tests.CalculatorServiceTests.CreateInvoiceShouldReturnExactInvoiceItems" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CreateInvoiceShouldReturnExactInvoiceItems" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestedProject.Tests.CalculatorServiceTests.GetGrossFromNetShouldReturnValidValue" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="GetGrossFromNetShouldReturnValidValue(10,0.23d,12.3d)" />
+                        <Property Name="DisplayName" Value="GetGrossFromNetShouldReturnValidValue(20,0.23d,24.6d)" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestedProject.Tests.CalculatorServiceTests.GetGrossFromNetShouldThrowsExceptionWhenTaxLess0" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="GetGrossFromNetShouldThrowsExceptionWhenTaxLess0" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+        <Rule Match="All">
+          <Property Name="Project" Value="BMICalculator.Services.Tests" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="BMICalculator.Services.Tests" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="ResultServiceTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="BMICalculator.Services.Tests.ResultServiceTests.SaveUnderweightResultAsyncShouldCallSaveResultAsyncOnlyOnes" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="SaveUnderweightResultAsyncShouldCallSaveResultAsyncOnlyOnes" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="BMICalculator.Services.Tests.ResultServiceTests.SetRecentOverweightResultShouldChangeStateResultService" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="SetRecentOverweightResultShouldChangeStateResultService" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="Tests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="BMICalculator.Services.Tests.Tests.GetResultShouldCallCreateCalculatorOnlyOnes" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="GetResultShouldCallCreateCalculatorOnlyOnes" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="BMICalculator.Services.Tests.Tests.GetResultShouldResultUnderweightWhenWeightIsToLow" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="GetResultShouldResultUnderweightWhenWeightIsToLow" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+      </Rule>
+    </Rule>
+  </Rule>
+</Playlist>

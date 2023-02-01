@@ -1,0 +1,102 @@
+{
+  "id": "95062e45-92e2-4ba6-8829-f1e9d1f95110",
+  "version": "2.0",
+  "name": "BmiCalculator.Tests",
+  "url": "https://localhost:7250",
+  "tests": [{
+    "id": "fb13710f-7914-4a47-be96-42a2b4906a04",
+    "name": "LoginToApp",
+    "commands": [{
+      "id": "10472697-d6dd-49c1-8a3d-113b7e4be735",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bc722d40-be3e-4258-a37d-f0f5d9f1c78c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1900x1030",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "81585898-f5c7-4483-b847-5a1895bf056b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Login",
+      "targets": [
+        ["linkText=Login", "linkText"],
+        ["css=.navbar-nav:nth-child(2) > .nav-item:nth-child(2) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Login')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Identity/Account/Login')]", "xpath:href"],
+        ["xpath=//ul[2]/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5482d647-123e-4f24-95f2-1b9253f245fc",
+      "comment": "",
+      "command": "type",
+      "target": "id=Input_Email",
+      "targets": [
+        ["id=Input_Email", "id"],
+        ["name=Input.Email", "name"],
+        ["css=#Input_Email", "css:finder"],
+        ["xpath=//input[@id='Input_Email']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "lasoty@o2.pl"
+    }, {
+      "id": "94aaef88-8f8e-4545-8f60-6c849e5102aa",
+      "comment": "",
+      "command": "type",
+      "target": "id=Input_Password",
+      "targets": [
+        ["id=Input_Password", "id"],
+        ["name=Input.Password", "name"],
+        ["css=#Input_Password", "css:finder"],
+        ["xpath=//input[@id='Input_Password']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Qwerty.1"
+    }, {
+      "id": "94d1a93f-b919-4727-bdab-d7b7c79489e5",
+      "comment": "",
+      "command": "click",
+      "target": "id=login-submit",
+      "targets": [
+        ["id=login-submit", "id"],
+        ["css=#login-submit", "css:finder"],
+        ["xpath=//button[@id='login-submit']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[4]/button", "xpath:idRelative"],
+        ["xpath=//div[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Log in')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "540e9283-a486-44f4-8e33-eaee5dd950ba",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "xpath=//h1[contains(.,'Welcome')]",
+      "targets": [
+        ["css=.display-4", "css:finder"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Welcome')]", "xpath:innerText"]
+      ],
+      "value": "30000"
+    }]
+  }],
+  "suites": [{
+    "id": "cce8428a-ddae-4914-89a3-07819d3b8294",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["fb13710f-7914-4a47-be96-42a2b4906a04"]
+  }],
+  "urls": ["https://localhost:7250/"],
+  "plugins": []
+}

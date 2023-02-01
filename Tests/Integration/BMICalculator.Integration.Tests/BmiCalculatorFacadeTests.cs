@@ -5,41 +5,51 @@ using BMICalculator.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Moq;
-using System.Linq;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using BMICalculator.Model.Data;
 using BMICalculator.Model.Model;
+using Autofac;
 
 namespace BMI.Calculator.Service.Integration.Tests
 {
     public class BmiCalculatorFacadeTests
     {
-        IResultRepository resultRepository;
         IBmiCalculatorFacade bmiCalculatorFacade;
         ApplicationDbContext dbContext;
 
         [SetUp]
         public void Setup()
         {
+            IContainer container = PrepareContainer();
 
+            dbContext = container.Resolve<ApplicationDbContext>();
+            dbContext.Database.EnsureDeleted();
+            dbContext.Database.EnsureCreated();
+
+            bmiCalculatorFacade = container.Resolve<IBmiCalculatorFacade>();
+        }
+
+        private IContainer PrepareContainer()
+        {
+            ContainerBuilder builder = new ContainerBuilder();
 
             DbContextOptions<ApplicationDbContext> options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseInMemoryDatabase("BmiDb")
                 .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                 .Options;
 
-            dbContext = new ApplicationDbContext(options);
-            dbContext.Database.EnsureDeleted();
-            dbContext.Database.EnsureCreated();
-
-            resultRepository = new ResultRepository(dbContext);
+            builder.RegisterInstance(options);
+            builder.RegisterType<ApplicationDbContext>();
+            builder.RegisterType<ResultRepository>().AsImplementedInterfaces();
 
             var bmiDeterminatorMock = new Mock<IBmiDeterminator>();
             var bmiCalculatorFactoryMock = new Mock<IBmiCalculatorFactory>();
+            builder.RegisterInstance(bmiDeterminatorMock.Object);
+            builder.RegisterInstance(bmiCalculatorFactoryMock.Object);
+            builder.RegisterType<BmiCalculatorFacade>().As<IBmiCalculatorFacade>();
 
-            bmiCalculatorFacade =
-                new BmiCalculatorFacade(bmiDeterminatorMock.Object, bmiCalculatorFactoryMock.Object, resultRepository);
+
+            return builder.Build();
         }
 
         [Test]

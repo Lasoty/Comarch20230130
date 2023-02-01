@@ -20,15 +20,28 @@ public class LoginToAppTest
 {
     private IWebDriver driver;
     public IDictionary<string, object> vars { get; private set; }
+
+    private string? environmentUrl;
+    private string? userLogin;
+    private string? userPasswd;
+
     private IJavaScriptExecutor js;
 
     [SetUp]
     public void SetUp()
     {
-        driver = new ChromeDriver();
+        var chromeOptions = new ChromeOptions();
+        chromeOptions.AddArguments("headless", "no-sandbox", "disable-gpu");
+
+        driver = new ChromeDriver(chromeOptions);
         js = (IJavaScriptExecutor)driver;
         vars = new Dictionary<string, object>();
+
+        environmentUrl = TestContext.Parameters["environmentUrl"];
+        userLogin = TestContext.Parameters["user_login"];
+        userPasswd = TestContext.Parameters["user_password"];
     }
+
     [TearDown]
     protected void TearDown()
     {
@@ -38,11 +51,11 @@ public class LoginToAppTest
     [Test]
     public void LoginToApp()
     {
-        driver.Navigate().GoToUrl("https://localhost:7250/");
+        driver.Navigate().GoToUrl(environmentUrl);
         driver.Manage().Window.Size = new System.Drawing.Size(1900, 1030);
         driver.FindElement(By.LinkText("Login")).Click();
-        driver.FindElement(By.Id("Input_Email")).SendKeys("lasoty@o2.pl");
-        driver.FindElement(By.Id("Input_Password")).SendKeys("Qwerty.1");
+        driver.FindElement(By.Id("Input_Email")).SendKeys(userLogin);
+        driver.FindElement(By.Id("Input_Password")).SendKeys(userPasswd);
         driver.FindElement(By.Id("login-submit")).Click();
         
         WebDriverWait wait = new WebDriverWait(driver, System.TimeSpan.FromSeconds(30));

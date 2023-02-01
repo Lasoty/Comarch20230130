@@ -1,4 +1,3 @@
-using BMICalculator.Model.Context;
 using BMICalculator.Model.DTO;
 using BMICalculator.Model.Repositories;
 using BMICalculator.Services;
@@ -6,9 +5,11 @@ using BMICalculator.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Moq;
-using NUnit.Framework;
 using System.Linq;
 using System.Threading.Tasks;
+using NUnit.Framework;
+using BMICalculator.Model.Data;
+using BMICalculator.Model.Model;
 
 namespace BMI.Calculator.Service.Integration.Tests
 {
@@ -16,17 +17,19 @@ namespace BMI.Calculator.Service.Integration.Tests
     {
         IResultRepository resultRepository;
         IBmiCalculatorFacade bmiCalculatorFacade;
-        AppDbContext dbContext;
+        ApplicationDbContext dbContext;
 
         [SetUp]
         public void Setup()
         {
-            DbContextOptions options = new DbContextOptionsBuilder<AppDbContext>()
+
+
+            DbContextOptions<ApplicationDbContext> options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseInMemoryDatabase("BmiDb")
                 .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                 .Options;
 
-            dbContext = new AppDbContext(options);
+            dbContext = new ApplicationDbContext(options);
             dbContext.Database.EnsureDeleted();
             dbContext.Database.EnsureCreated();
 
@@ -42,10 +45,11 @@ namespace BMI.Calculator.Service.Integration.Tests
         [Test]
         public async Task SaveResultShouldSaveBmiRecordInDb()
         {
+            Guid id = Guid.NewGuid();
             // Arrange
-            BmiResult bmi = new BmiResult()
+            BmiMeasurement bmi = new BmiMeasurement()
             {
-                Id = 1,
+                Id = id,
                 Bmi = 15,
                 BmiClassification = BmiClassification.Normal,
                 Summary = "Jest OK"
@@ -55,7 +59,7 @@ namespace BMI.Calculator.Service.Integration.Tests
             await bmiCalculatorFacade.SaveResult(bmi);
 
             // Assert
-            Assert.IsTrue(dbContext.Results.Any(x => x.Id == bmi.Id && x.BmiClassification == BmiClassification.Normal));
+            Assert.IsTrue(dbContext.BmiMeasurements.Any(x => x.Id == bmi.Id && x.BmiClassification == BmiClassification.Normal));
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BMICalculator.Model.DTO;
+using BMICalculator.Model.Model;
 using BMICalculator.Model.Repositories;
 using System.Threading.Tasks;
 
@@ -22,7 +23,7 @@ namespace BMICalculator.Services
             }
         }
 
-        public async Task SaveUnderweightResultAsync(BmiResult result)
+        public async Task SaveUnderweightResultAsync(BmiMeasurement result)
         {
             if (result.BmiClassification == BmiClassification.Underweight)
             {

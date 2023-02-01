@@ -1,5 +1,7 @@
 ﻿using BMICalculator.Model.DTO;
+using BMICalculator.Model.Model;
 using BMICalculator.Model.Repositories;
+using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -12,8 +14,8 @@ namespace BMICalculator.Services.Tests
 {
     public class ResultServiceTests
     {
-        ResultService resultService;
         Mock<IResultRepository> resultRepositoryMock;
+        ResultService resultService;
 
         [SetUp]
         public void SetUp()
@@ -45,17 +47,14 @@ namespace BMICalculator.Services.Tests
         public async Task SaveUnderweightResultAsyncShouldCallSaveResultAsyncOnlyOnes()
         {
             // Arrange 
-            resultRepositoryMock.Setup(m => m.SaveResultAsync(It.IsAny<BmiResult>())).Verifiable();
-            BmiResult bmi = new()
-            {
-                BmiClassification = BmiClassification.Underweight,
-            };
+            resultRepositoryMock.Setup(m => m.SaveResultAsync(It.IsAny<BmiMeasurement>())).Verifiable();
+            BmiMeasurement bmi = new();
 
             // Act
             await resultService.SaveUnderweightResultAsync(bmi);
 
             // Assert
-            resultRepositoryMock.Verify(m => m.SaveResultAsync(It.IsAny<BmiResult>()), Times.Once());
+            resultRepositoryMock.Verify(m => m.SaveResultAsync(It.IsAny<BmiMeasurement>()), Times.Once());
         }
     }
 }

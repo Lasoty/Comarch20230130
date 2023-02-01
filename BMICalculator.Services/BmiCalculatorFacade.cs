@@ -1,4 +1,5 @@
 ﻿using BMICalculator.Model.DTO;
+using BMICalculator.Model.Model;
 using BMICalculator.Model.Repositories;
 using BMICalculator.Services.Enums;
 using BMICalculator.Services.Interfaces;
@@ -14,7 +15,7 @@ namespace BMICalculator.Services
         private readonly IResultRepository resultRepository;
 
         public BmiCalculatorFacade(
-            IBmiDeterminator bmiDeterminator, 
+            IBmiDeterminator bmiDeterminator,
             IBmiCalculatorFactory bmiCalculatorFactory,
             IResultRepository resultRepository
             )
@@ -57,7 +58,7 @@ namespace BMICalculator.Services
 
         }
 
-        public async Task<bool> SaveResult(BmiResult result)
+        public async Task<bool> SaveResult(BmiMeasurement result)
         {
             await resultRepository.SaveResultAsync(result);
 
@@ -69,6 +70,6 @@ namespace BMICalculator.Services
     {
         BmiResult GetResult(double weight, double height, UnitSystem unitSystem);
 
-        Task<bool> SaveResult(BmiResult result);
+        Task<bool> SaveResult(BmiMeasurement result);
     }
 }
